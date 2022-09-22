@@ -27,6 +27,8 @@ class UsersTest extends WebTestCase
             [
                 'email' => $this->generateHelper()::TEST_USER_REG_EMAIL,
                 'password' => $this->generateHelper()::TEST_USER_PASSWORD,
+                'firstName' => $this->generateHelper()->generateRandomString(5),
+                'lastName' => $this->generateHelper()->generateRandomString(5),
             ]
         );
 
