@@ -138,7 +138,7 @@ class VerificationRequest
     {
         $this->status = $status;
 
-        $this->status = $this->status ? $this->status :  "Verification Requested";
+        $this->status = $this->status;
 
         return $this;
     }
