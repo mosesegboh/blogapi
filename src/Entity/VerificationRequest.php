@@ -94,7 +94,7 @@ class VerificationRequest
     #[Groups(['verification_request:write', 'verification_request:read'])]
     #[ORM\Column(length: 255, nullable: true)]
     #[Assert\NotBlank]
-    public ?string $status = null;
+    public ?string $status = 'Verification Requested';
 
     #[Groups(['verification_request:write', 'verification_request:read'])]
     #[ORM\ManyToOne(inversedBy: 'verificationRequests', cascade: ['persist'])]
@@ -138,7 +138,7 @@ class VerificationRequest
     {
         $this->status = $status;
 
-        $this->status = $this->status ? $this->status :  "Verification Request Sent";
+        $this->status = $this->status ? $this->status :  "Verification Requested";
 
         return $this;
     }
