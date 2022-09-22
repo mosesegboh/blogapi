@@ -128,6 +128,34 @@ class PostsTest extends WebTestCase
     }
 
     /**
+     * Testing the validation for the Post endpoint
+     *
+     * @return void
+     */
+    public function testPostValidation()
+    {
+        $client = static::createClient();
+
+        $userRepository = static::getContainer()->get(UserRepository::class);
+
+        $testUser = $userRepository->findOneByEmail($this->generateHelper()::AUTH_USER);
+
+        $client->loginUser($testUser);
+
+        $client->jsonRequest('POST', '/api/posts',
+            [
+                'date' => $this->generateHelper()::TEST_DATE,
+                'title' => '',
+                'content' => $this->generateHelper()::TEST_TEXT,
+                'user' =>  $this->generateHelper()::TEST_REL_USER
+            ]
+        );
+
+        $response = $client->getResponse();
+        $this->assertSame(422, $response->getStatusCode());
+    }
+
+    /**
      * Generate helper obj for test
      *
      * @return void

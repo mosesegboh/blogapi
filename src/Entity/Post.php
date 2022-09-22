@@ -7,6 +7,7 @@ use App\Repository\PostRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ApiResource(
         itemOperations: [
@@ -32,19 +33,23 @@ class Post
 
     /** The date the blog post is created */
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    #[Assert\NotNull]
     private ?\DateTimeInterface $date = null;
 
     /** The Title of the blog post */
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank]
     private ?string $title = null;
 
     /** The Content of the blog post */
     #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Assert\NotBlank]
     private ?string $content = null;
 
     /** The User that created the blog post */
     #[Groups(['product.read', 'product.write'])]
     #[ORM\ManyToOne(inversedBy: 'posts', cascade: ['persist'])]
+    #[Assert\NotBlank]
     public ?User $user = null;
 
     public function getId(): ?int

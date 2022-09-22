@@ -37,6 +37,34 @@ class UsersTest extends WebTestCase
     }
 
     /**
+     * Testing the validation for the Post endpoint
+     *
+     * @return void
+     */
+    public function testUserValidation()
+    {
+        $client = static::createClient();
+
+        $userRepository = static::getContainer()->get(UserRepository::class);
+
+        $testUser = $userRepository->findOneByEmail($this->generateHelper()::AUTH_USER);
+
+        $client->loginUser($testUser);
+
+        $client->jsonRequest('POST', '/api/users',
+            [
+                'email' => $this->generateHelper()::TEST_USER_REG_EMAIL,
+                'password' => $this->generateHelper()::TEST_USER_PASSWORD,
+                'firstName' => '',
+                'lastName' => $this->generateHelper()->generateRandomString(5),
+            ]
+        );
+
+        $response = $client->getResponse();
+        $this->assertSame(422, $response->getStatusCode());
+    }
+
+    /**
      * Testing the index function in Get Api
      *
      * @return void

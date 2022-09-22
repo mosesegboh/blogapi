@@ -88,14 +88,17 @@ class VerificationRequest
 
     #[Groups(['verification_request:write', 'verification_request:read'])]
     #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Assert\NotBlank]
     public ?string $message = null;
 
     #[Groups(['verification_request:write', 'verification_request:read'])]
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank]
     public ?string $status = null;
 
     #[Groups(['verification_request:write', 'verification_request:read'])]
     #[ORM\ManyToOne(inversedBy: 'verificationRequests', cascade: ['persist'])]
+    #[Assert\NotBlank]
     private ?User $user = null;
 
     #[Groups(['verification_request:write', 'verification_request:read'])]

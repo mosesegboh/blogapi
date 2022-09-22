@@ -28,7 +28,7 @@ class VerificationRequestsTest extends WebTestCase
 
         $client->loginUser($testUser);
 
-        $crawler = $client->request('GET', '/api/verification_requests?page=1');
+        $client->request('GET', '/api/verification_requests?page=1');
 
         $this->assertResponseIsSuccessful();
         $response = $client->getResponse();
@@ -51,7 +51,7 @@ class VerificationRequestsTest extends WebTestCase
 
         $client->loginUser($testUser);
 
-        $crawler = $client->request('GET', '/api/verification_requests/1');
+        $client->request('GET', '/api/verification_requests/1');
 
         $this->assertResponseIsSuccessful();
         $response = $client->getResponse();
@@ -68,7 +68,7 @@ class VerificationRequestsTest extends WebTestCase
 
         $client->loginUser($testUser);
 
-        $crawler = $client->request('GET', '/api/verification_decision/6/1/NotQualified');
+        $client->request('GET', '/api/verification_decision/6/1/NotQualified');
 
         $this->assertResponseIsSuccessful();
         $response = $client->getResponse();
@@ -84,7 +84,7 @@ class VerificationRequestsTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/api/verification_decision/6/1/NotQualified');
+        $client->request('GET', '/api/verification_decision/6/1/NotQualified');
 
         $response = $client->getResponse();
         $this->assertSame(401, $response->getStatusCode());

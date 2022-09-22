@@ -4,6 +4,7 @@ namespace App\Tests;
 
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\ApiTestCase;
 use App\Entity\VerificationRequest;
+use App\Helpers\Helper;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class FileUploadTest extends ApiTestCase
@@ -15,6 +16,7 @@ class FileUploadTest extends ApiTestCase
      */
     public function testCreateAMediaObject(): void
     {
+        $helper = new Helper();
         $file = new UploadedFile('fixtures/files/632ba96c930d7_Screenshot from 2021-09-14 13-59-52.png', '632ba96c930d7_Screenshot from 2021-09-14 13-59-52.png');
         $client = self::createClient();
 
@@ -24,7 +26,8 @@ class FileUploadTest extends ApiTestCase
                     'parameters' => [
                         'message' => 'test',
                         'status' => 'Verification Request Sent',
-                        'user' => 'api/users/4'
+                        'user' => 'api/users/4',
+                        'imagePath' => 'files/image.png'
                     ],
                     'files' => [
                         'file' => $file,
