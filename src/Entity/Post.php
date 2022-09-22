@@ -16,6 +16,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
                     ],
         ],
         collectionOperations: [
+            "get",
             "post" => ["security_post_denormalize" => "is_granted('ROLE_BLOGGER') or is_granted('ROLE_ADMIN')",
                         "security_post_denormalize_message" => "Sorry, but you have to be an admin or a blogger to create post"
                     ]
