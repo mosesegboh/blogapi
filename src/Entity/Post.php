@@ -10,6 +10,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ApiResource(
+        attributes: ["pagination_items_per_page" => 5],
         itemOperations: [
             "get",
             "put" => ["security_post_denormalize" => "is_granted('ROLE_ADMIN') or (object.user == user and previous_object.user == user)",
