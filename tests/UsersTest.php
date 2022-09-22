@@ -17,7 +17,6 @@ class UsersTest extends WebTestCase
      */
     public function testCreateUser(): void
     {
-        $helper = new Helper();
         $client = static::createClient();
         $userRepository = static::getContainer()->get(UserRepository::class);
         $testUser = $userRepository->findOneByEmail($this->generateHelper()::AUTH_USER);
