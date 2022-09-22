@@ -10,6 +10,7 @@ use Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
+use App\Helpers\Helper;
 
 
 final class VerificationRequestMailSubscriber implements EventSubscriberInterface
@@ -30,6 +31,7 @@ final class VerificationRequestMailSubscriber implements EventSubscriberInterfac
 
     public function sendMail( $event)
     {
+        $helper = new Helper();
         $verificationRequest = $event->getControllerResult();
         $method = $event->getRequest()->getMethod();
 
@@ -42,8 +44,8 @@ final class VerificationRequestMailSubscriber implements EventSubscriberInterfac
         $_SESSION['DECISION'] = '';
 
         $email = (new Email())
-            ->from('sales@app.com')
-            ->to('mosesegboh@yahoo.com')
+            ->from($helper::FROM_EMAIL)
+            ->to($helper::TO_EMAIL)
             ->subject('Your Request has been ' . $status)
             ->html('<p>Your request has been ' . $status . '</p>');
 

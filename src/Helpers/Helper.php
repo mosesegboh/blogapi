@@ -14,6 +14,8 @@ class Helper
     const TEST_REL_USER = '/api/users/5';
     const TEST_DATE = '2022-09-17T15:36:06.445Z';
     const TEST_TEXT = 'What is Lorem Ipsum?';
+    const FROM_EMAIL = 'sales@app.com';
+    const TO_EMAIL = 'mosesegboh@yahoo.com';
 
     /**
      * Generates a random string for symfony test
