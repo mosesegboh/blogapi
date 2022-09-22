@@ -61,6 +61,22 @@ class PostsTest extends WebTestCase
     }
 
     /**
+     * Testing the GET All Post endpoint
+     *
+     * @return void
+     */
+    public function testAllGetPosts(): void
+    {
+        $client = static::createClient();
+
+        $client->request('GET', '/api/posts?page=1');
+
+        $this->assertResponseIsSuccessful();
+        $response = $client->getResponse();
+        $this->assertSame(200, $response->getStatusCode());
+    }
+
+    /**
      * Testing the PUT Post endpoint
      *
      * @return void
