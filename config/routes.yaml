@@ -1,0 +1,19 @@
+controllers:
+    resource: ../src/Controller/
+    type: attribute
+
+#api_decision:
+#    path: '/api/decision'
+#    methods: ['PATCH']
+#    defaults:
+#        _controller: '\App\Controller\DecisionController::decision'
+#        _api_resource_class: 'App\Entity\VerificationRequest'
+#        _api_collection_operation_name: 'collName_api_me'
+
+#api_decision:
+#    path:     '/api/{id}/approve'
+#    methods:  ['PUT']
+#    defaults:
+#        _controller: '\App\Controller\DecisionController::decision'
+#        _api_resource_class: 'App\Entity\VerificationRequest'
+#        _api_item_operation_name: 'approve'

@@ -1,0 +1,8 @@
+# api/fixtures/user.yaml
+App\Entity\User:
+  user_{1..10}:
+    email: <email()>
+    password: <sentence(3)>
+    roles: [ROLE_ADMIN, ROLE_BLOGGER]
+    posts: '@user_*'
+    verificationrequest: '@verficationrequest_*'

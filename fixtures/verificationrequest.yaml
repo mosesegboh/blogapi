@@ -1,0 +1,9 @@
+# api/fixtures/verificationrequest.yaml
+App\Entity\VerificationRequest:
+  verificationrequest_{1..10}:
+    message: <text()>
+    status: '<randomElement( ["Verification Requested", "Approved", "Declined"] )>'
+    user: '@user_*'
+    created_at: <dateTime()>
+    updated_at: <dateTime()>
+    imagepath: '<fileCopy("features/files/image/6322e3a66c1d0_Screenshot from 2021-09-11 20-49-40.jpg","public/media", 0)>'

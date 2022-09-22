@@ -1,0 +1,7 @@
+# api/fixtures/post.yaml
+App\Entity\Post:
+  post_{1..100}:
+    date: <dateTime()>
+    title: <sentence(3)>
+    content: <text()>
+    user: '@user_*'
