@@ -9,10 +9,6 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class VerificationRequestsTest extends WebTestCase
 {
-    protected function setUp(): void
-    {
-        $helper = new Helper();
-    }
     /**
      * Testing the PUT Post endpoint
      *
@@ -80,7 +76,7 @@ class VerificationRequestsTest extends WebTestCase
      *
      * @return void
      */
-    public function testVerificationProtectedRoutes()
+    public function testVerificationProtectedRoutes(): void
     {
         $client = static::createClient();
 

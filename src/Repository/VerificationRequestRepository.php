@@ -39,7 +39,9 @@ class VerificationRequestRepository extends ServiceEntityRepository
         }
     }
 
-    public function __toString() { return 'I CAUSED THIS ISSUE, LOL';}
+    public function __toString() {
+        return 'I CAUSED THIS ISSUE, LOL';
+    }
 
 //    /**
 //     * @return VerificationRequest[] Returns an array of VerificationRequest objects
