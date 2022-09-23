@@ -17,6 +17,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\Post;
 use App\Controller\VerificationRequestDecision;
+use App\Controller\VerificationRequestUpdate;
 
 /**
  * @Vich\Uploadable
@@ -39,6 +40,11 @@ use App\Controller\VerificationRequestDecision;
             "get" => ["security_post_denormalize" => "is_granted('ROLE_ADMIN')",
                         "security_post_denormalize_message" => "Sorry, but you have to be an admin to view verification request."
                     ],
+            "patch" => [
+                "security_post_denormalize" => "(object.user == user and previous_object.user == user)",
+                "security_post_denormalize_message" => "Sorry, but you have to be the owner of the verification request inorder to edit it",
+                "controller" => VerificationRequestUpdate::class,
+            ],
             "request_decision" => [
                 "security_post_denormalize" => "is_granted('ROLE_ADMIN')",
                 "method" => "GET",
@@ -99,7 +105,7 @@ class VerificationRequest
     #[Groups(['verification_request:write', 'verification_request:read'])]
     #[ORM\ManyToOne(inversedBy: 'verificationRequests', cascade: ['persist'])]
     #[Assert\NotBlank]
-    private ?User $user = null;
+    public ?User $user = null;
 
     #[Groups(['verification_request:write', 'verification_request:read'])]
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
