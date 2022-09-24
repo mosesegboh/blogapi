@@ -46,6 +46,7 @@ use App\Controller\VerificationRequestUpdate;
             ],
             "request_decision" => [
                 "security_post_denormalize" => "is_granted('ROLE_ADMIN')",
+                "security_post_denormalize_message" => "Sorry, but you have to be an admin to make a decision on  verification request",
                 "method" => "GET",
                 "path" => "/verification_decision/{id}/{decision}/{rejection_message}",
                 "controller" => VerificationRequestDecision::class,
@@ -109,6 +110,7 @@ class VerificationRequest
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $created_at = null;
 
+    #[Groups(['verification_request:read'])]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $imagePath = null;
 
