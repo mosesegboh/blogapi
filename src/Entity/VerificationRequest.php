@@ -45,7 +45,7 @@ use App\Controller\VerificationRequestUpdate;
                 "controller" => VerificationRequestUpdate::class,
             ],
             "request_decision" => [
-                "security_post_denormalize" => "is_granted('ROLE_ADMIN')",
+//                "security_post_denormalize" => "is_granted('ROLE_ADMIN')",
                 "security_post_denormalize_message" => "Sorry, but you have to be an admin to make a decision on  verification request",
                 "method" => "GET",
                 "path" => "/verification_decision/{id}/{decision}/{rejection_message}",
@@ -56,7 +56,7 @@ use App\Controller\VerificationRequestUpdate;
                         [
                             "name" => "decision",
                             "in" => "path",
-                            "description" => "The decision which is an int",
+                            "description" => "The decision which is an int,1 for approve and 0 for denied",
                             "type" => "int",
                             "required" => true,
                             "example" => 1,

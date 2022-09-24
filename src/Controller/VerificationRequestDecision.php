@@ -17,7 +17,7 @@ final class VerificationRequestDecision extends AbstractController
     {
         $helper = new Helper();
         $entityManager = $doctrine->getManager();
-        $verificationRequest = $entityManager->getRepository(VerificationRequest::class)->findOneByUserId($request->get('id'));
+        $verificationRequest = $entityManager->getRepository(VerificationRequest::class)->findOneById($request->get('id'));
 
         if (!$verificationRequest) {
             throw $this->createNotFoundException(

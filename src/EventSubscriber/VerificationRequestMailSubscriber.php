@@ -11,15 +11,18 @@ use Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\Mailer\MailerInterface;
 use App\Helpers\Helper;
+use Doctrine\Persistence\ManagerRegistry;
 
 
 final class VerificationRequestMailSubscriber implements EventSubscriberInterface
 {
     private $mailer;
+    private $entityManager;
 
-    public function __construct(MailerInterface $mailer)
+    public function __construct(MailerInterface $mailer, ManagerRegistry $doctrine)
     {
         $this->mailer = $mailer;
+        $this->entityManager = $doctrine->getManager();
     }
 
     public static function getSubscribedEvents()
@@ -29,7 +32,7 @@ final class VerificationRequestMailSubscriber implements EventSubscriberInterfac
         ];
     }
 
-    public function sendMail( $event, $appEmail)
+    public function sendMail( $event)
     {
         $helper = new Helper();
         $verificationRequest = $event->getControllerResult();
@@ -45,7 +48,7 @@ final class VerificationRequestMailSubscriber implements EventSubscriberInterfac
 
         $email = (new TemplatedEmail())
             ->from($helper::FROM_EMAIL)
-            ->to($helper::TO_EMAIL)
+            ->to($verificationRequest->getUser()->getEmail())
             ->subject('Your Request has been ' . $status)
             ->htmlTemplate('email/decision.html.twig')
             ->context([

@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 #[AsController]
 class VerificationRequestUpdate extends  AbstractController
 {
-    public function __invoke(  ManagerRegistry $doctrine,$id ,Request $request): VerificationRequest
+    public function __invoke(  ManagerRegistry $doctrine ,Request $request): VerificationRequest
     {
         $entityManager = $doctrine->getManager();
         $verificationRequest = $entityManager->getRepository(VerificationRequest::class)->findOneById($request->get('id'));
