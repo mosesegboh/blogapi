@@ -46,7 +46,7 @@ use App\Controller\VerificationRequestUpdate;
                 "controller" => VerificationRequestUpdate::class,
             ],
             "request_decision" => [
-//                "security_post_denormalize" => "is_granted('ROLE_ADMIN')",
+                "security_post_denormalize" => "is_granted('ROLE_ADMIN')",
                 "method" => "GET",
                 "path" => "/verification_decision/{id}/{decision}/{rejection_message}",
                 "controller" => VerificationRequestDecision::class,
