@@ -16,7 +16,7 @@ class VerificationRequestUpdate extends  AbstractController
         $entityManager = $doctrine->getManager();
         $verificationRequest = $entityManager->getRepository(VerificationRequest::class)->findOneById($request->get('id'));
 
-        if($verificationRequest->getStatus() !== 'Verification requested') {
+        if($verificationRequest->getStatus() !== 'Verification Requested') {
             throw $this->createNotFoundException(
                 'You cannot edit your request at this point'
             );

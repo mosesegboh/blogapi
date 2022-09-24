@@ -12,7 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
-use ApiPlatform\Core\Annotation\ApiProperty;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\Post;
@@ -94,7 +93,6 @@ class VerificationRequest
 
     #[Groups(['verification_request:write', 'verification_request:read'])]
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    #[Assert\NotBlank]
     public ?string $message = null;
 
     #[Groups(['verification_request:write', 'verification_request:read'])]

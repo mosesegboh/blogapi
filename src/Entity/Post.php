@@ -48,7 +48,6 @@ class Post
     private ?string $content = null;
 
     /** The User that created the blog post */
-    #[Groups(['product.read', 'product.write'])]
     #[ORM\ManyToOne(inversedBy: 'posts', cascade: ['persist'])]
     #[Assert\NotBlank]
     public ?User $user = null;
