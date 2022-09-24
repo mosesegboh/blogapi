@@ -56,7 +56,7 @@ use App\Controller\VerificationRequestUpdate;
                         [
                             "name" => "decision",
                             "in" => "path",
-                            "description" => "The decision which is an int,1 for approve and 0 for denied",
+                            "description" => "The decision which is an int, 1 for approve and 2 for denied",
                             "type" => "int",
                             "required" => true,
                             "example" => 1,
@@ -143,8 +143,6 @@ class VerificationRequest
     public function setStatus(?string $status): self
     {
         $this->status = $status;
-
-        $this->status = $this->status;
 
         return $this;
     }
