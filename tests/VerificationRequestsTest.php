@@ -64,7 +64,7 @@ class VerificationRequestsTest extends WebTestCase
 
         $client->loginUser($testUser);
 
-        $client->request('GET', '/api/verification_decision/6/1/NotQualified');
+        $client->request('GET', '/api/verification_decision/1/1/NotQualified');
 
         $this->assertResponseIsSuccessful();
         $response = $client->getResponse();
@@ -80,7 +80,7 @@ class VerificationRequestsTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/api/verification_decision/6/1/NotQualified');
+        $client->request('GET', '/api/verification_decision/1/1/NotQualified');
 
         $response = $client->getResponse();
         $this->assertSame(401, $response->getStatusCode());
